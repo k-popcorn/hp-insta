@@ -4,7 +4,17 @@ import textwrap
 
 app = FastAPI()
 
-# ... (기본 설정 및 깃허브 URL 변수는 동일) ...
+# 깃허브 raw 파일 기본 주소 완성
+BASE_IMAGE_URL = f"https://k-popcorn.github.io/hp"
+
+def wrap_text_to_tspans(text, width, x_pos, line_height):
+    # (이전과 동일한 줄바꿈 함수)
+    lines = textwrap.wrap(text, width=35)
+    tspans = ""
+    for i, line in enumerate(lines):
+        dy = 0 if i == 0 else line_height
+        tspans += f'<tspan x="{x_pos}" dy="{dy}">{line}</tspan>'
+    return tspans
 
 @app.get("/api/insta-post-real")
 async def get_insta_post_real(
