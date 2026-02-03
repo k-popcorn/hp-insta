@@ -1,6 +1,8 @@
 from fastapi import FastAPI, Response
 from datetime import datetime
 import textwrap
+import httpx
+import base64
 
 app = FastAPI()
 
